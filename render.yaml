@@ -1,0 +1,25 @@
+services:
+  - type: worker
+    name: MultiBotV2
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: node prestart.js && node dist/index.js
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      # No longer used — commands now deploy to every server the bot is in.
+      # Safe to remove.
+      - key: GUILD_ID
+        sync: false
+      # Optional: Bot owner user ID — enables /deploy for this user
+      - key: BOT_OWNER_ID
+        sync: false
+      # Optional: GitHub backup — leave empty to disable
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_REPO
+        sync: false          # format: owner/repo-name
+      - key: GITHUB_BRANCH
+        sync: false          # default: main
